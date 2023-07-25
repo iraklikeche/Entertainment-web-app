@@ -1,18 +1,34 @@
 <script setup>
-import { ref, reactive } from "vue";
-import logo from "@/assets/logo.svg";
-import home from "@/assets/icon-nav-home.svg";
-import movies from "@/assets/icon-nav-movies.svg";
-import tv from "@/assets/icon-nav-tv-series.svg";
-import bookmark from "@/assets/icon-nav-bookmark.svg";
-import search from "@/assets/icon-search.svg";
+import { ref, reactive, watch, computed } from "vue";
 import data from "@/data/data.json";
 
-const value = ref("");
-console.log(data);
-const trendingItems = reactive(data.filter((item) => item.isTrending));
+import logo from "@/assets/logo.svg";
+import home from "@/assets/icon-nav-home.svg";
+import moviesIcon from "@/assets/icon-nav-movies.svg";
+import tv from "@/assets/icon-nav-tv-series.svg";
+import bookmark from "@/assets/icon-nav-bookmark.svg";
+import searchIcon from "@/assets/icon-search.svg";
+import play from "@/assets/icon-play.svg";
+
+const search = ref("");
+
+const trendingItems = computed(() =>
+  data.filter(
+    (item) =>
+      item.isTrending &&
+      item.title.toLowerCase().includes(search.value.toLowerCase())
+  )
+);
+
 console.log(data[0].thumbnail.trending.large);
-console.log(data[0].thumbnail.trending.large);
+console.log(trendingItems);
+
+watch(search, () => {
+  trendingItems.value = data.filter((movie) =>
+    movie.title.toLowerCase().includes(search.value.toLowerCase())
+  );
+  console.log("hello");
+});
 </script>
 
 <template>
@@ -26,7 +42,7 @@ console.log(data[0].thumbnail.trending.large);
           <img :src="home" class="icon-nav" />
         </a>
         <a class="icon-link" href="#">
-          <img :src="movies" class="icon-nav" />
+          <img :src="moviesIcon" class="icon-nav" />
         </a>
         <a class="icon-link" href="#">
           <img :src="tv" class="icon-nav" />
@@ -38,11 +54,10 @@ console.log(data[0].thumbnail.trending.large);
     </div>
 
     <main>
-      <img :src="data[0].thumbnail.trending.large" />
       <div class="search">
-        <img :src="search" />
-        <a-input
-          v-model:value="value"
+        <img :src="searchIcon" />
+        <input
+          v-model.trim="search"
           placeholder="Search for movies or TV series"
           class="input"
         />
@@ -50,15 +65,19 @@ console.log(data[0].thumbnail.trending.large);
       <div class="main-content">
         <h3>Trending</h3>
         <div class="trending">
-          <div>
+          <div class="cards">
             <div
               v-for="(item, index) in trendingItems"
               :key="index"
               class="card"
               :style="{
-                'background-image': `url(${item.thumbnail.trending.large})`,
+                'background-image': `${item.thumbnail.trending.large}`,
               }"
             >
+              <a class="play" href="#">
+                <img :src="play" class="icon-nav" />
+                <p>Play</p>
+              </a>
               <div class="bookmark-container">
                 <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -70,7 +89,7 @@ console.log(data[0].thumbnail.trending.large);
                 </svg>
               </div>
               <div class="span-elements">
-                <span>{{ data[0].year }}</span>
+                <span>{{ item.year }}</span>
                 <span>&#x2022; {{ item.category }}</span>
                 <span>&#x2022; {{ item.rating }}</span>
               </div>
@@ -118,6 +137,8 @@ main {
   border: none;
   color: #fff;
   font-weight: bold;
+  width: 100%;
+  padding-left: 10px;
 }
 
 .logo {
@@ -150,7 +171,7 @@ main {
 .card {
   width: 360px;
   height: 170px;
-  /* background-image: url("@/assets/thumbnails/beyond-earth/trending/large.jpg"); */
+  background-image: url("@/assets/thumbnails/beyond-earth/trending/large.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -161,6 +182,11 @@ main {
   justify-content: flex-end;
   padding-left: 16px;
   position: relative;
+}
+
+.cards {
+  display: flex;
+  gap: 32px;
 }
 
 span {
@@ -191,5 +217,34 @@ p {
   position: absolute;
   top: 5%;
   right: 4%;
+}
+
+.play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  align-self: center;
+  margin-bottom: 16px;
+  background-color: rgba(112, 112, 125, 0.5);
+  border-radius: 16px;
+  padding: 7px 21px 7px 12px;
+  visibility: hidden;
+  transition: visibility 0s, opacity 0.4s ease-in-out;
+  opacity: 0; /* Start with zero opacity */
+}
+
+.card:hover .play {
+  visibility: visible; /* Show the link on hover */
+  opacity: 1; /* Fade in with full opacity */
+}
+
+.play img {
+  width: 26px;
+  height: 26px;
+}
+
+.play p {
+  margin-bottom: 0;
 }
 </style>
