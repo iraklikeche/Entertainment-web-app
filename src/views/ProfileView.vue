@@ -47,7 +47,7 @@ const recommended = reactive(data.filter((item) => !item.isTrending));
         <div class="recommended">
           <h3>Recommended for you</h3>
           <div class="recommended-cards">
-            <Card :items="recommended" />
+            <Card :items="recommended" :isFlex="false" />
           </div>
         </div>
       </div>
@@ -58,11 +58,6 @@ const recommended = reactive(data.filter((item) => !item.isTrending));
 <style scoped>
 .recommended {
   margin-top: 30px;
-}
-
-.recommended-cards {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
 }
 
 main {
@@ -89,10 +84,5 @@ main {
   font-weight: bold;
   width: 100%;
   padding-left: 10px;
-}
-
-.main-content h3 {
-  color: #fff;
-  font-size: 24px;
 }
 </style>

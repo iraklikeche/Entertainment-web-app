@@ -7,3 +7,8 @@
 body {
   background-color: #10141e !important;
 }
+
+.main-content h3 {
+  color: #fff;
+  font-size: 24px;
+}

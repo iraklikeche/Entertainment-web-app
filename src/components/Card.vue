@@ -1,11 +1,12 @@
 <script setup>
 import play from "@/assets/icon-play.svg";
 
-const { props } = defineProps(["items"]);
+const props = defineProps(["items", "isFlex"]);
+const cardClass = props.isFlex ? "card-flex" : "card-greed";
 </script>
 
 <template>
-  <div class="cards">
+  <div :class="cardClass">
     <div v-for="(item, index) in items" :key="index" class="card">
       <a class="play" href="#">
         <img :src="play" class="icon-nav" />
@@ -18,6 +19,7 @@ const { props } = defineProps(["items"]);
             stroke="#FFF"
             stroke-width="1.5"
             fill="none"
+            class="bookmark-svg"
           />
         </svg>
       </div>
@@ -38,6 +40,20 @@ const { props } = defineProps(["items"]);
 
 .cards {
   display: flex;
+  gap: 32px;
+}
+.card-flex {
+  display: flex;
+  /* flex-direction: column;
+  justify-content: flex-end; */
+  gap: 32px;
+}
+
+.card-greed {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Add your desired styles for the greed mode here */
+  /* For example: width: 100%; height: 100%; etc. */
   gap: 32px;
 }
 .card {
@@ -84,6 +100,19 @@ p {
   position: absolute;
   top: 5%;
   right: 4%;
+  cursor: pointer;
+  transition: 0.35s;
+}
+
+.bookmark-container:hover {
+  background-color: #fff;
+}
+.bookmark-svg {
+  transition: 0.35s;
+}
+
+.bookmark-container:hover .bookmark-svg {
+  fill: #000;
 }
 
 .play {

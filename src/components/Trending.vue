@@ -8,7 +8,7 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
 <template>
   <h3>Trending</h3>
   <div class="trending">
-    <Card :items="trendingItems" />
+    <Card :items="trendingItems" :isFlex="true" />
   </div>
 </template>
 
