@@ -25,8 +25,6 @@ watch(search, () => {
   );
   console.log("hello");
 });
-
-const recommended = reactive(data.filter((item) => !item.isTrending));
 </script>
 
 <template>
@@ -44,22 +42,12 @@ const recommended = reactive(data.filter((item) => !item.isTrending));
       </div>
       <div class="main-content">
         <Trending />
-        <div class="recommended">
-          <h3>Recommended for you</h3>
-          <div class="recommended-cards">
-            <Card :items="recommended" :isFlex="false" />
-          </div>
-        </div>
       </div>
     </main>
   </div>
 </template>
 
 <style scoped>
-.recommended {
-  margin-top: 30px;
-}
-
 main {
   width: 100%;
   padding-top: 20px;
@@ -69,12 +57,6 @@ main {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-}
-.container {
-  max-width: 1200px;
-  padding: 20px 40px;
-  display: flex;
-  gap: 50px;
 }
 
 .input {

@@ -2,6 +2,7 @@
 import { reactive } from "vue";
 import data from "@/data/data.json";
 import Card from "./Card.vue";
+import Recommended from "./Recommended.vue";
 const trendingItems = reactive(data.filter((item) => item.isTrending));
 </script>
 
@@ -10,6 +11,7 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
   <div class="trending">
     <Card :items="trendingItems" :isFlex="true" />
   </div>
+  <Recommended />
 </template>
 
 <style scoped>
