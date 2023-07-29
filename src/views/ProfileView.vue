@@ -1,10 +1,10 @@
 <script setup>
 import Aside from "../components/Aside.vue";
 import Trending from "../components/Trending.vue";
-import { ref, watch, computed, reactive } from "vue";
+import { ref, watch, computed,  } from "vue";
 import data from "@/data/data.json";
 import searchIcon from "@/assets/icon-search.svg";
-import Card from "../components/Card.vue";
+
 
 const search = ref("");
 
@@ -48,11 +48,6 @@ watch(search, () => {
 </template>
 
 <style scoped>
-main {
-  width: 100%;
-  padding-top: 20px;
-}
-
 .search {
   display: flex;
   gap: 10px;

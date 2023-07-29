@@ -10,9 +10,8 @@ import { RouterLink } from "vue-router";
 
 <template>
   <div class="side">
-    <a href="#" class="logo-link">
-      <img :src="logo" class="logo" />
-    </a>
+    <img :src="logo" class="logo" />
+
     <div class="nav-icons">
       <RouterLink to="/" class="icon-link">
         <img :src="trending" class="icon-nav" />
@@ -20,9 +19,9 @@ import { RouterLink } from "vue-router";
       <RouterLink to="/movies" class="icon-link">
         <img :src="moviesIcon" class="icon-nav" />
       </RouterLink>
-      <a class="icon-link" href="#">
+      <RouterLink to="/tv-series" class="icon-link">
         <img :src="tv" class="icon-nav" />
-      </a>
+      </RouterLink>
       <a class="icon-link" href="#">
         <img :src="bookmark" class="icon-nav" />
       </a>
