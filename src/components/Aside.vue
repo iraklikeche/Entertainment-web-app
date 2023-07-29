@@ -22,9 +22,9 @@ import { RouterLink } from "vue-router";
       <RouterLink to="/tv-series" class="icon-link">
         <img :src="tv" class="icon-nav" />
       </RouterLink>
-      <a class="icon-link" href="#">
+      <RouterLink to="/bookmarked" class="icon-link">
         <img :src="bookmark" class="icon-nav" />
-      </a>
+      </RouterLink>
     </div>
   </div>
 </template>
