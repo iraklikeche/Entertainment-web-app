@@ -1,7 +1,10 @@
 <script setup>
 import play from "@/assets/icon-play.svg";
 import { useBookmarkStore } from "../stores/bookmark";
+import data from "../data/data.json";
+
 const props = defineProps(["items", "isFlex"]);
+
 const cardClass = props.isFlex ? "card-flex" : "card-greed";
 const { addBookmark } = useBookmarkStore();
 
@@ -9,6 +12,20 @@ function handleBookmark(movie) {
   addBookmark(movie);
   console.log(movie);
 }
+
+const image = data[1].thumbnail.trending.small;
+console.log(image);
+// :style="{backgroundImage:url(data[1].thumbnail.trending.small)}
+// :style="getCardBackground(item)"
+
+const getCardBackground = (item) => {
+  const thumbnailUrl =
+    item.thumbnail?.trending?.large || item.thumbnail?.regular?.large || "";
+  // console.log(thumbnailUrl);
+  return {
+    "background-image": `url(${thumbnailUrl})`,
+  };
+};
 </script>
 
 <template>
@@ -50,22 +67,20 @@ function handleBookmark(movie) {
 }
 .card-flex {
   display: flex;
-  /* flex-direction: column;
-  justify-content: flex-end; */
+
   gap: 32px;
 }
 
 .card-greed {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* Add your desired styles for the greed mode here */
-  /* For example: width: 100%; height: 100%; etc. */
+
   gap: 32px;
 }
 .card {
   width: 360px;
   height: 170px;
-  background-image: url("@/assets/thumbnails/beyond-earth/trending/large.jpg");
+  background-image: url("@/assets/thumbnails/beyond-earth/regular/small.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,7 +1,6 @@
 <script setup>
 import { reactive } from "vue";
 import Card from "./Card.vue";
-import Aside from "./Aside.vue";
 import data from "@/data/data.json";
 import { useBookmarkStore } from "../stores/bookmark";
 
@@ -26,17 +25,14 @@ const isBookmarkedTvSeries = reactive(
 </script>
 
 <template>
-  <div class="container">
-    <Aside />
-    <main>
-      <h3>Bookmarked Movies</h3>
-      <Card :items="isBookmarkedMovie" />
-      <div class="separate-bookmark">
-        <h3>Bookmarked Tv Series</h3>
-        <Card :items="isBookmarkedTvSeries" />
-      </div>
-    </main>
-  </div>
+  <main>
+    <h3>Bookmarked Movies</h3>
+    <Card :items="isBookmarkedMovie" />
+    <div class="separate-bookmark">
+      <h3>Bookmarked Tv Series</h3>
+      <Card :items="isBookmarkedTvSeries" />
+    </div>
+  </main>
 </template>
 
 <style scoped>

@@ -1,6 +1,8 @@
 <script setup>
 import AuthModal from "../components/AuthModal.vue";
+import Aside from "../components/Aside.vue";
 import ProfileView from "./ProfileView.vue";
+import SearchBar from "../components/SearchBar.vue";
 
 import { ref } from "vue";
 
@@ -16,8 +18,17 @@ const isLogin = ref(false);
       <AuthModal :isLogin="true" />
     </div>
   </div>
-  <div v-else>
-    <ProfileView />
+  <div v-else class="container">
+    <Aside />
+    <main>
+      <div>
+        <SearchBar />
+      </div>
+      <div>
+        <!-- <ProfileView /> -->
+        <router-view />
+      </div>
+    </main>
   </div>
 </template>
 

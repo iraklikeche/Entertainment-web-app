@@ -1,5 +1,4 @@
 <script setup>
-import Aside from "./Aside.vue";
 import Card from "./Card.vue";
 import { reactive } from "vue";
 import data from "@/data/data.json";
@@ -7,13 +6,10 @@ import data from "@/data/data.json";
 const movies = reactive(data.filter((item) => item.category === "Movie"));
 </script>
 <template>
-  <div class="container">
-    <Aside />
-    <main>
-      <h3>Movies</h3>
-      <Card :items="movies" />
-    </main>
-  </div>
+  <main>
+    <h3>Movies</h3>
+    <Card :items="movies" />
+  </main>
 </template>
 
 <style scoped>
