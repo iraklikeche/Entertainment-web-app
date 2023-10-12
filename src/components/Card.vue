@@ -1,11 +1,12 @@
 <script setup>
-import play from "@/assets/icon-play.svg";
+import play from "../../public/assets/icon-play.svg";
 import { useBookmarkStore } from "../stores/bookmark";
 import data from "../data/data.json";
 
-const props = defineProps(["items", "isFlex"]);
+const props = defineProps(["items", "isFlex", "isMain"]);
 
 const cardClass = props.isFlex ? "card-flex" : "card-greed";
+const cardSize = props.isMain ? "card-main" : "card-small";
 const { addBookmark } = useBookmarkStore();
 
 function handleBookmark(movie) {
@@ -13,24 +14,23 @@ function handleBookmark(movie) {
   console.log(movie);
 }
 
-const image = data[1].thumbnail.trending.small;
-console.log(image);
-// :style="{backgroundImage:url(data[1].thumbnail.trending.small)}
-// :style="getCardBackground(item)"
-
-const getCardBackground = (item) => {
-  const thumbnailUrl =
-    item.thumbnail?.trending?.large || item.thumbnail?.regular?.large || "";
-  // console.log(thumbnailUrl);
-  return {
-    "background-image": `url(${thumbnailUrl})`,
-  };
-};
+const backgroundImage = data[1].thumbnail.trending.small;
+const dynamicVariable = "beyond-earth"; // Example dynamic variable
+const dynamicBackgroundImage = `url(../../public/assets/thumbnails/${dynamicVariable}/regular/large.jpg)`;
+console.log(dynamicBackgroundImage);
 </script>
 
 <template>
   <div :class="cardClass">
-    <div v-for="(item, index) in items" :key="index" class="card">
+    <div
+      v-for="(item, index) in items"
+      :key="index"
+      class="card"
+      :class="cardSize"
+      :style="{
+        backgroundImage: `url(${`../../public/${item.thumbnail.regular.large}`})`,
+      }"
+    >
       <a class="play" href="#">
         <img :src="play" class="icon-nav" />
         <p>Play</p>
@@ -67,20 +67,27 @@ const getCardBackground = (item) => {
 }
 .card-flex {
   display: flex;
-
   gap: 32px;
 }
 
 .card-greed {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
+  width: 90%;
   gap: 32px;
 }
+
+.card-main {
+  width: 400px;
+  height: 200px;
+}
+
+.card-small {
+  width: 100%;
+  height: 150px;
+}
 .card {
-  width: 360px;
-  height: 170px;
-  background-image: url("@/assets/thumbnails/beyond-earth/regular/small.jpg");
+  /* background-image: url("@/assets/thumbnails/beyond-earth/regular/large.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

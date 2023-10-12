@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, computed } from "vue";
 import data from "@/data/data.json";
-import searchIcon from "@/assets/icon-search.svg";
+import searchIcon from "../../public//assets/icon-search.svg";
 const search = ref("");
 const trendingItems = computed(() =>
   data.filter(

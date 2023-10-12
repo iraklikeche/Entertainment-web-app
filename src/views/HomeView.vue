@@ -1,7 +1,6 @@
 <script setup>
 import AuthModal from "../components/AuthModal.vue";
 import Aside from "../components/Aside.vue";
-import ProfileView from "./ProfileView.vue";
 import SearchBar from "../components/SearchBar.vue";
 
 import { ref } from "vue";
@@ -25,7 +24,6 @@ const isLogin = ref(false);
         <SearchBar />
       </div>
       <div>
-        <!-- <ProfileView /> -->
         <router-view />
       </div>
     </main>
