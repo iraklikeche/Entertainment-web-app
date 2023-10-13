@@ -2,21 +2,33 @@
 import { ref, watch, computed } from "vue";
 import data from "@/data/data.json";
 import searchIcon from "../../public//assets/icon-search.svg";
+
+const movies = ref(data);
 const search = ref("");
-const trendingItems = computed(() =>
-  data.filter(
-    (item) =>
-      item.isTrending &&
-      item.title.toLowerCase().includes(search.value.toLowerCase())
-  )
-);
 
 watch(search, () => {
-  trendingItems.value = data.filter((movie) =>
+  movies.value = data.filter((movie) =>
     movie.title.toLowerCase().includes(search.value.toLowerCase())
   );
-  console.log("hello");
+  console.log(movies.value);
 });
+
+// const trendingItems = computed(() =>
+//   movies.value.filter(
+//     (item) =>
+//       item.isTrending &&
+//       item.title.toLowerCase().includes(search.value.toLowerCase())
+//   )
+// );
+
+// console.log(trendingItems.value);
+
+// watch(search, () => {
+//   trendingItems.value = data.filter((movie) =>
+//     movie.title.toLowerCase().includes(search.value.toLowerCase())
+//   );
+//   console.log("hello");
+// });
 </script>
 <template>
   <div class="search">

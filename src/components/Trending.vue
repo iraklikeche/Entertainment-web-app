@@ -9,7 +9,7 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
 
 <template>
   <h3>Trending</h3>
-  <div class="trending">
+  <div class="carousel trending">
     <Card :items="trendingItems" :isFlex="true" :isMain="true" />
   </div>
   <Recommended />
@@ -18,8 +18,20 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
 <style scoped>
 .trending {
   display: flex;
+  max-width: 1300px;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
+.carousel {
+  scroll-snap-type: x mandatory;
+  overflow: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+/* .carousel::-webkit-scrollbar {
+  width: 0;
+} */
+/* 
 :deep(.slick-slide) {
   text-align: center;
   height: 160px;
@@ -30,5 +42,5 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
 
 :deep(.slick-slide h3) {
   color: #fff;
-}
+} */
 </style>

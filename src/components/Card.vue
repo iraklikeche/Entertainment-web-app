@@ -13,11 +13,6 @@ function handleBookmark(movie) {
   addBookmark(movie);
   console.log(movie);
 }
-
-const backgroundImage = data[1].thumbnail.trending.small;
-const dynamicVariable = "beyond-earth"; // Example dynamic variable
-const dynamicBackgroundImage = `url(../../public/assets/thumbnails/${dynamicVariable}/regular/large.jpg)`;
-console.log(dynamicBackgroundImage);
 </script>
 
 <template>
@@ -25,7 +20,7 @@ console.log(dynamicBackgroundImage);
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="card"
+      class="card item"
       :class="cardSize"
       :style="{
         backgroundImage: `url(${`../../public/${item.thumbnail.regular.large}`})`,
@@ -73,8 +68,8 @@ console.log(dynamicBackgroundImage);
 .card-greed {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 90%;
   gap: 32px;
+  margin-bottom: 32px;
 }
 
 .card-main {
@@ -87,7 +82,6 @@ console.log(dynamicBackgroundImage);
   height: 150px;
 }
 .card {
-  /* background-image: url("@/assets/thumbnails/beyond-earth/regular/large.jpg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -149,7 +143,7 @@ p {
   align-items: center;
   gap: 20px;
   align-self: center;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
   background-color: rgba(112, 112, 125, 0.5);
   border-radius: 16px;
   padding: 7px 21px 7px 12px;

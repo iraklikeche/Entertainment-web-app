@@ -4,7 +4,7 @@ import Trending from "../components/Trending.vue";
 
 <template>
   <div class="main-content">
-    <Trending />
-    <router-view :key="$route.fullPath" />
+    <!-- <Trending /> -->
+    <!-- <router-view :key="$route.fullPath" /> -->
   </div>
 </template>
