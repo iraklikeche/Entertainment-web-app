@@ -1,17 +1,27 @@
 <script setup>
 import play from "../../public/assets/icon-play.svg";
 import { useBookmarkStore } from "../stores/bookmark";
-import data from "../data/data.json";
 
 const props = defineProps(["items", "isFlex", "isMain"]);
 
 const cardClass = props.isFlex ? "card-flex" : "card-greed";
 const cardSize = props.isMain ? "card-main" : "card-small";
-const { addBookmark } = useBookmarkStore();
+
+const { addBookmark, removeBookmark } = useBookmarkStore();
 
 function handleBookmark(movie) {
-  addBookmark(movie);
+  movie.isBookmarked = !movie.isBookmarked;
+
+  if (movie.isBookmarked) {
+    addBookmark(movie);
+  } else {
+    removeBookmark(movie);
+  }
   console.log(movie);
+  localStorage.setItem(
+    "bookmarkedMovies",
+    JSON.stringify(useBookmarkStore().bookmarked)
+  );
 }
 </script>
 
@@ -30,13 +40,18 @@ function handleBookmark(movie) {
         <img :src="play" class="icon-nav" />
         <p>Play</p>
       </a>
-      <div class="bookmark-container" @click="handleBookmark">
-        <svg width="12" height="14" xmlns="http://www.w3.org/2000/svg">
+      <div class="bookmark-container" @click="handleBookmark(item)">
+        <svg
+          width="12"
+          height="14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="bookmark-icon"
+        >
           <path
             d="m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z"
             stroke="#FFF"
             stroke-width="1.5"
-            fill="none"
+            :fill="item.isBookmarked ? '#FFF' : 'none'"
             class="bookmark-svg"
           />
         </svg>
@@ -117,7 +132,7 @@ p {
   align-items: center;
   width: 30px;
   height: 30px;
-  background-color: #70707d;
+  background-color: #000;
   border-radius: 50%;
   position: absolute;
   top: 5%;

@@ -1,20 +1,48 @@
-import { ref, computed } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { defineStore } from "pinia";
+import data from "../data/data.json";
 
 export const useBookmarkStore = defineStore("bookmark", () => {
-  const bookmarks = ref([]);
+  const bookmarked = ref([]);
 
-  // const addBookmark = computed(() => count.value * 2);
+  // const initFromLocalStorage = () => {
+  //   const storedBookmarked = localStorage.getItem("bookmarkedMovies");
+  //   if (storedBookmarked) {
+  //     bookmarked.value = JSON.parse(storedBookmarked);
+  //   }
+  // };
+  const initFromLocalStorage = () => {
+    const storedBookmarked = localStorage.getItem("bookmarkedMovies");
+    if (storedBookmarked) {
+      const parsedBookmarked = JSON.parse(storedBookmarked);
+      // Set isBookmarked property for each movie item
+      parsedBookmarked.forEach((movie) => {
+        movie.isBookmarked = true; // Assuming the movie is bookmarked
+      });
+      bookmarked.value = parsedBookmarked;
+    }
+  };
+
+  const setBookmarkedMovies = (movies) => {
+    // Filter movies with isBookmarked set to true and update the bookmarked variable
+    bookmarked.value = movies.filter((movie) => movie.isBookmarked);
+    console.log(bookmarked.value);
+  };
+
   function addBookmark(movie) {
-    bookmarks.value.push(movie);
-    console.log(movie);
-  }
-  function removeBookmark(movie) {
-    const index = bookmarks.value.findIndex((m) => m.id === movie.id);
-    if (index !== -1) {
-      bookmarks.value.splice(index, 1);
+    if (!bookmarked.value.some((item) => item.id === movie.id)) {
+      bookmarked.value.push(movie);
     }
   }
 
-  return { bookmarks, addBookmark };
+  function removeBookmark(movie) {
+    const index = bookmarked.value.findIndex((item) => item.id === movie.id);
+    if (index !== -1) {
+      bookmarked.value.splice(index, 1);
+    }
+  }
+
+  onBeforeMount(initFromLocalStorage);
+
+  return { bookmarked, setBookmarkedMovies, addBookmark, removeBookmark };
 });

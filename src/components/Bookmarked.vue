@@ -1,27 +1,29 @@
 <script setup>
-import { reactive } from "vue";
+import { ref, onMounted, watchEffect, computed } from "vue";
 import Card from "./Card.vue";
 import data from "@/data/data.json";
 import { useBookmarkStore } from "../stores/bookmark";
 
-const { bookmarks, addBookmark } = useBookmarkStore();
-const isBookmarkedMovie = reactive(
-  data.filter((item) => item.isBookmarked && item.category === "Movie")
-);
-const isBookmarkedTvSeries = reactive(
-  data.filter((item) => item.isBookmarked && item.category === "TV Series")
-);
+const bookmarkedStore = useBookmarkStore();
+const bookmarkedMovies = ref([]);
 
-// Create a computed property to add the `item` data to bookmarks
+const isBookmarkedMovie = computed(() => {
+  return bookmarkedMovies.value.filter((item) => item.category === "Movie");
+});
 
-// const bookmarksWithDetails = computed(() =>
-//   bookmarks.map((bookmark) => ({
-//     ...bookmark,
-//     year: bookmark.year,
-//     category: bookmark.category,
-//     rating: bookmark.rating,
-//   }))
-// );
+const isBookmarkedTvSeries = computed(() => {
+  return bookmarkedMovies.value.filter((item) => item.category === "TV Series");
+});
+
+onMounted(() => {
+  bookmarkedStore.setBookmarkedMovies(data);
+});
+
+// Update the bookmarkedMovies ref when bookmarkedStore.bookmarked changes
+watchEffect(() => {
+  bookmarkedMovies.value = bookmarkedStore.bookmarked;
+  console.log(bookmarkedMovies.value);
+});
 </script>
 
 <template>

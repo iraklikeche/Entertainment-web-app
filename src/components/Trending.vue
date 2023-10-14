@@ -5,13 +5,13 @@ import Card from "./Card.vue";
 import Recommended from "./Recommended.vue";
 
 const trendingItems = reactive(data.filter((item) => item.isTrending));
-const filteredItems = computed(() => data.filter((item) => item.isTrending));
+// const filteredItems = computed(() => data.filter((item) => item.isTrending));
 </script>
 
 <template>
   <h3>Trending</h3>
   <div class="carousel trending">
-    <Card :items="filteredItems" :isFlex="true" :isMain="true" />
+    <Card :items="trendingItems" :isFlex="true" :isMain="true" />
   </div>
   <Recommended />
 </template>
