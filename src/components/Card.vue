@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeMount } from "vue";
 import play from "../../public/assets/icon-play.svg";
 import { useBookmarkStore } from "../stores/bookmark";
 
@@ -7,7 +8,12 @@ const props = defineProps(["items", "isFlex", "isMain"]);
 const cardClass = props.isFlex ? "card-flex" : "card-greed";
 const cardSize = props.isMain ? "card-main" : "card-small";
 
-const { addBookmark, removeBookmark } = useBookmarkStore();
+const { addBookmark, removeBookmark, bookmarked } = useBookmarkStore();
+
+onBeforeMount(() => {
+  // Ensure the store is initialized before accessing bookmarked data
+  bookmarked.value = useBookmarkStore().bookmarked;
+});
 
 function handleBookmark(movie) {
   movie.isBookmarked = !movie.isBookmarked;
@@ -18,10 +24,6 @@ function handleBookmark(movie) {
     removeBookmark(movie);
   }
   console.log(movie);
-  localStorage.setItem(
-    "bookmarkedMovies",
-    JSON.stringify(useBookmarkStore().bookmarked)
-  );
 }
 </script>
 

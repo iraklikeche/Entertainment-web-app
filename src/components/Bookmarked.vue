@@ -22,7 +22,7 @@ onMounted(() => {
 // Update the bookmarkedMovies ref when bookmarkedStore.bookmarked changes
 watchEffect(() => {
   bookmarkedMovies.value = bookmarkedStore.bookmarked;
-  console.log(bookmarkedMovies.value);
+  // console.log(bookmarkedMovies.value);
 });
 </script>
 
