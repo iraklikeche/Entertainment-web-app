@@ -5,7 +5,6 @@ import Card from "./Card.vue";
 import Recommended from "./Recommended.vue";
 
 const trendingItems = reactive(data.filter((item) => item.isTrending));
-// const filteredItems = computed(() => data.filter((item) => item.isTrending));
 </script>
 
 <template>
@@ -27,21 +26,4 @@ const trendingItems = reactive(data.filter((item) => item.isTrending));
   scroll-snap-type: x mandatory;
   overflow: auto;
 }
-
-/* Hide scrollbar for Chrome, Safari, and Opera */
-/* .carousel::-webkit-scrollbar {
-  width: 0;
-} */
-/* 
-:deep(.slick-slide) {
-  text-align: center;
-  height: 160px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-}
-
-:deep(.slick-slide h3) {
-  color: #fff;
-} */
 </style>

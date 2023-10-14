@@ -80,6 +80,7 @@ function handleBookmark(movie) {
 .card-flex {
   display: flex;
   gap: 32px;
+  /* width: 100%; */
 }
 
 .card-greed {
@@ -181,5 +182,21 @@ p {
 
 .play p {
   margin-bottom: 0;
+}
+
+@media (max-width: 1200px) {
+  .card-greed {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-main {
+    width: 350px;
+    height: 150px;
+  }
+  .card-greed {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>

@@ -1,6 +1,5 @@
 import { ref, onBeforeMount } from "vue";
 import { defineStore } from "pinia";
-import data from "../data/data.json";
 
 export const useBookmarkStore = defineStore("bookmark", () => {
   const bookmarked = ref([]);

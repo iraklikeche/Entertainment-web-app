@@ -13,6 +13,8 @@ const onSearchingStatusUpdated = (isSearching) => {
   hideSpecificDiv.value = isSearching;
 };
 
+// Reset the input field
+
 router.beforeEach((to, from, next) => {
   search.value = "";
   next();
@@ -30,3 +32,11 @@ router.beforeEach((to, from, next) => {
     </main>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 1200px) {
+  .container {
+    display: block;
+  }
+}
+</style>

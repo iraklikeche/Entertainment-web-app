@@ -15,6 +15,13 @@ const recommended = reactive(data.filter((item) => !item.isTrending));
 
 <style scoped>
 .recommended {
+  padding-right: 24px;
   margin-top: 30px;
+}
+
+@media (max-width: 1200px) {
+  .recommended {
+    padding-right: 0;
+  }
 }
 </style>

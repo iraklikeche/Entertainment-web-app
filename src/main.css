@@ -8,23 +8,6 @@ body {
   background-color: #10141e !important;
 }
 
-.main-content h3 {
-  color: #fff;
-  font-size: 24px;
-}
-
-.container {
-  /* max-width: 1200px; */
-  display: flex;
-  padding: 20px 50px;
-  gap: 50px;
-}
-
-main {
-  width: 100%;
-  padding-top: 20px;
-}
-
 ::-webkit-scrollbar {
   height: 8px;
   width: 8px;
@@ -37,4 +20,32 @@ main {
 ::-webkit-scrollbar-thumb:vertical {
   border-radius: 5px;
   background: #fff;
+}
+
+.main-content h3 {
+  color: #fff;
+  font-size: 24px;
+}
+
+.container {
+  display: flex;
+  padding: 20px 50px;
+  gap: 50px;
+}
+
+main {
+  width: 100%;
+  padding-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
 }

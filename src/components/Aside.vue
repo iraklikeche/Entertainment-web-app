@@ -55,4 +55,18 @@ import { RouterLink } from "vue-router";
 .icon-link:hover .icon-nav {
   opacity: 0.5;
 }
+
+@media (max-width: 1200px) {
+  .side {
+    flex-direction: row;
+    height: auto;
+    justify-content: center;
+    gap: 120px;
+  }
+
+  .nav-icons {
+    flex-direction: row;
+    gap: 72px;
+  }
+}
 </style>
