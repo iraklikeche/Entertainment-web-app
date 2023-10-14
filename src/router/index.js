@@ -7,12 +7,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-      // children: [
-      //   { path: "", component: ProfileView }, // Default view when visiting the home page
-      //   { path: "movies", component: Movies },
-      //   { path: "tv-series", component: TvSeries },
-      //   { path: "bookmarked", component: Bookmarked },
-      // ],
     },
     {
       path: "/movies",

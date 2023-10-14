@@ -1,18 +1,16 @@
 <script setup>
-import { ref, watch, computed, defineEmits } from "vue";
+import { ref, watch, defineEmits, onMounted } from "vue";
 import data from "@/data/data.json";
 import searchIcon from "../../public//assets/icon-search.svg";
 import Card from "./Card.vue";
+import { useRouter } from "vue-router";
 
 const movies = ref(data);
 const search = ref("");
 const isSearching = ref(false);
+const router = useRouter();
 
 const emit = defineEmits(["toggleIsSearching"]);
-
-// const props = defineProps({
-//   isSearching: Boolean,
-// });
 
 const emitSearchingStatus = () => {
   // Emit a custom event named 'searching-status-updated' with the isSearching value
@@ -30,6 +28,13 @@ watch(search, () => {
     movies.value = data; // Reset movies to the original data when search input is empty
   }
 });
+
+onMounted(() => {
+  // Reset search input when the route changes
+  router.afterEach(() => {
+    search.value = "";
+  });
+});
 </script>
 <template>
   <div class="search">
@@ -40,8 +45,8 @@ watch(search, () => {
       class="input"
     />
   </div>
-  <div v-if="isSearching && movies.length > 0">
-    <p>Found {{ movies.length }} results for "{{ search }}"</p>
+  <div v-if="isSearching">
+    <p class="found">Found {{ movies.length }} results for "{{ search }}"</p>
     <div class="carousel">
       <Card :items="movies" :isFlex="true" :isMain="true" />
     </div>
@@ -69,5 +74,9 @@ watch(search, () => {
   overflow: auto;
   display: flex;
   max-width: 1300px;
+}
+
+.found {
+  color: #fff;
 }
 </style>
