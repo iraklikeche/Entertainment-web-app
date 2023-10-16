@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
-import play from "../../public/assets/icon-play.svg";
+import play from "/assets/icon-play.svg";
 import { useBookmarkStore } from "../stores/bookmark";
 
 const props = defineProps(["items", "isFlex", "isMain"]);
@@ -35,7 +35,7 @@ function handleBookmark(movie) {
       class="card item"
       :class="cardSize"
       :style="{
-        backgroundImage: `url(${`../../public/${item.thumbnail.regular.large}`})`,
+        backgroundImage: `url(${`${item.thumbnail.regular.large}`})`,
       }"
     >
       <a class="play" href="#">

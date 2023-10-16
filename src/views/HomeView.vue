@@ -1,23 +1,8 @@
 <script setup>
-import AuthModal from "../components/AuthModal.vue";
-import Aside from "../components/Aside.vue";
-import SearchBar from "../components/SearchBar.vue";
-
-import { ref } from "vue";
 import Trending from "../components/Trending.vue";
-
-const isAuth = ref(true);
-const isLogin = ref(false);
 </script>
 
 <template>
-  <!-- <div class="welcome" v-if="isLogin">
-    <h1>Welcome To {{ isAuth ? "Entertainment App" : "Your Profile" }}</h1>
-    <div class="sign-btns" v-if="isAuth">
-      <AuthModal :isLogin="false" />
-      <AuthModal :isLogin="true" />
-    </div>
-  </div> -->
   <div class="main-content">
     <Trending />
   </div>

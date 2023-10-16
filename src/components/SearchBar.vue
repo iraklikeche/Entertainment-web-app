@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, defineEmits, onMounted } from "vue";
 import data from "@/data/data.json";
-import searchIcon from "../../public//assets/icon-search.svg";
+import searchIcon from "/assets/icon-search.svg";
 import Card from "./Card.vue";
 import { useRouter } from "vue-router";
 

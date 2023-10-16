@@ -1,9 +1,9 @@
 <script setup>
-import logo from "../../public/assets/logo.svg";
-import trending from "../../public/assets/icon-nav-home.svg";
-import moviesIcon from "../../public/assets/icon-nav-movies.svg";
-import tv from "../../public/assets/icon-nav-tv-series.svg";
-import bookmark from "../../public/assets/icon-nav-bookmark.svg";
+import logo from "/assets/logo.svg";
+import trending from "/assets/icon-nav-home.svg";
+import moviesIcon from "/assets/icon-nav-movies.svg";
+import tv from "/assets/icon-nav-tv-series.svg";
+import bookmark from "/assets/icon-nav-bookmark.svg";
 
 import { RouterLink } from "vue-router";
 </script>
